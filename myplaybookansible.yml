@@ -11,8 +11,11 @@
       ansible.builtin.dnf:
           name: *
           state: latest
+          register: patch_update 
+          became: true
     
-    - register: Salida_dnf
     - name: Unconditionally reboot the machine with all defaults
       ansible.builtin.reboot:
-        msg: "Rebooting machine in 5 seconds"
+      when: patch_update is changed 
+      msg: "Rebooting machine in 5 seconds"
+
