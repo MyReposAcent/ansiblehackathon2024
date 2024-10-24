@@ -7,9 +7,15 @@
       ansible.builtin.debug:
         msg: "Bienvenido al mundo de Ansible"
 
-      
-- name: Prevent Apache / httpd from being updated
-  community.general.yum_versionlock:
-    state: present
-    name:
-    - httpd
+- hosts: nginxservers
+  become: yes
+  tasks:
+    - name: update
+      apt: update_cache=yes
+    - name: Install Nginx
+      apt: name=nginx state=latest
+      notify:
+        - restart nginx
+  handlers:
+    - name: restart nginx
+      service: name=nginx state=reloaded
