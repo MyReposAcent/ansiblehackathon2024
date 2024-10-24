@@ -7,15 +7,9 @@
       ansible.builtin.debug:
         msg: "Bienvenido al mundo de Ansible"
 
-- hosts: nginxservers
-  become: yes
-  tasks:
-    - name: update
-      apt: update_cache=yes
-    - name: Install Nginx
-      apt: name=nginx state=latest
-      notify:
-        - restart nginx
-  handlers:
-    - name: restart nginx
-      service: name=nginx state=reloaded
+    - name: Install the latest version of Apache
+      ansible.builtin.dnf:
+          name: *
+          state: latest
+    
+
