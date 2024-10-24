@@ -12,4 +12,7 @@
           name: *
           state: latest
     
-
+    - register: Salida_dnf
+    - name: Unconditionally reboot the machine with all defaults
+      ansible.builtin.reboot:
+        msg: "Rebooting machine in 5 seconds"
