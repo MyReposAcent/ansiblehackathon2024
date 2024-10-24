@@ -8,11 +8,8 @@
         msg: "Bienvenido al mundo de Ansible"
 
       
-- name: Prevent multiple packages from being updated
+- name: Prevent Apache / httpd from being updated
   community.general.yum_versionlock:
     state: present
     name:
     - httpd
-    - nginx
-    - haproxy
-    - curl
