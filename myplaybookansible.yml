@@ -6,3 +6,13 @@
     - name: Dame un mensaje
       ansible.builtin.debug:
         msg: "Bienvenido al mundo de Ansible"
+
+      
+- name: Prevent multiple packages from being updated
+  community.general.yum_versionlock:
+    state: present
+    name:
+    - httpd
+    - nginx
+    - haproxy
+    - curl
