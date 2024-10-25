@@ -7,7 +7,7 @@
       ansible.builtin.debug:
         msg: "Bienvenido al mundo de Ansible"
 
-    - name: Install the latest version of Apache
+    - name: Install the latest version all packs 
       ansible.builtin.dnf:
           name: *
           state: latest
